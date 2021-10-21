@@ -1,2 +1,7 @@
 MODE: "debug"
 Port: 9090
+
+GOOGLE_SECRET_KEY: "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"
+GOOLE_CLIENT_ID: "543260283462-632hpt3vaknoefk9pviv2nh43uods7ej.apps.googleusercontent.com"
+
+REDIRECT_URL: "http://localhost:9090/api/ouath/google/login"
