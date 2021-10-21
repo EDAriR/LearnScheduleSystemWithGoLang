@@ -15,4 +15,4 @@
 # vendor/
 
 /mysql
-config.yaml
+/config.yaml
