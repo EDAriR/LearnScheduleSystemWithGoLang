@@ -2,7 +2,9 @@ package handler
 
 import (
 	"LearnScheduleSystemWithGoLang/config"
+	"LearnScheduleSystemWithGoLang/pkg/jwt"
 	"LearnScheduleSystemWithGoLang/pkg/res"
+
 	"fmt"
 	"io/ioutil"
 	"net/http"
@@ -57,6 +59,17 @@ func GoogleLogin(c *gin.Context) {
 		c.Redirect(http.StatusFound, "/")
 		return
 	}
+
+	jwtToken, err := jwt.GenerateToken(id, name)
+	if err != nil {
+		log.WithFields(log.Fields{
+			"err": err,
+		}).Debug("GenerateToken error")
+		c.Redirect(http.StatusFound, "/")
+		return
+	}
+
+	c.SetCookie(jwt.Key, jwtToken, config.Val.JWTTokenLife, "/", "localhost", false, true)
 
 	// 把值log出來看
 	log.Infof("id: %v, name: %v", id, name)
