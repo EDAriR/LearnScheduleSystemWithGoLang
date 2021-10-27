@@ -31,6 +31,11 @@ type Config struct {
 	DBMaxConn     int `mapstructure:"DB_MAX_CONN"`
 	DBIdleConn    int `mapstructure:"DB_IDLE_CONN"`
 	DBMaxLifeTime int `mapstructure:"DB_MAX_LIFE_TIME"`
+
+	RedisHost string `mapstructure:"REDIS_HOST"`
+	RedisPort string `mapstructure:"REDIS_PORT"`
+	RedisUser string `mapstructure:"REDIS_USER"`
+	RedisPass string `mapstructure:"REDIS_PASS"`
 }
 
 // Init Init
