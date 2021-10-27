@@ -9,4 +9,6 @@ require (
 	github.com/spf13/viper v1.9.0
 	github.com/tidwall/gjson v1.10.0
 	golang.org/x/sys v0.0.0-20211020174200-9d6173849985 // indirect
+	gorm.io/driver/mysql v1.1.2
+	gorm.io/gorm v1.22.0
 )

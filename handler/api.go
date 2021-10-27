@@ -2,8 +2,10 @@ package handler
 
 import (
 	"LearnScheduleSystemWithGoLang/config"
+	"LearnScheduleSystemWithGoLang/model"
 	"LearnScheduleSystemWithGoLang/pkg/jwt"
 	"LearnScheduleSystemWithGoLang/pkg/res"
+	"time"
 
 	"fmt"
 	"io/ioutil"
@@ -121,4 +123,25 @@ func getGoogleUserInfo(token string) (id, name string, err error) {
 	id = gjson.GetBytes(body, "id").String()
 
 	return id, name, nil
+}
+
+// CreateTask CreateTask
+func CreateTask(c *gin.Context) {
+	var taskData model.Task
+	c.BindJSON(&taskData)
+
+	taskData.UserID = c.GetString("user_id")
+	taskData.Status = model.TaskAble
+	taskData.CreatedTimestamp = time.Now().UTC().Unix()
+
+	if err := model.TaskModel.Create(taskData); err != nil {
+		log.WithFields(log.Fields{
+			"task_data":  taskData,
+			"origin_err": err.Error(),
+		}).Error("db error")
+		res.SystemError(c, res.ErrSystemCode, gin.H{})
+		return
+	}
+
+	res.Success(c, gin.H{})
 }

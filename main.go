@@ -22,6 +22,8 @@ func main() {
 	{
 		api.GET("ouath/google/url", handler.GoogleAccsess)
 		api.GET("ouath/google/login", handler.GoogleLogin)
+		api.POST("/task", middleware.Auth(), handler.CreateTask)
+
 	}
 
 	r.Run(":" + config.Val.Port)

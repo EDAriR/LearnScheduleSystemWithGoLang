@@ -24,7 +24,7 @@ func BadRequest(c *gin.Context, errorCode int, payload interface{}) {
 }
 
 // SystemError SystemError
-func SystemError(c *gin.Context, errorCode int, payload interface{}) {
+func SystemError(c *gin.Context, errorCode string, payload interface{}) {
 	c.JSON(http.StatusInternalServerError, gin.H{
 		"result":     false,
 		"error_code": errorCode,
