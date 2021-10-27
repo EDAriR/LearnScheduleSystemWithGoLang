@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"LearnScheduleSystemWithGoLang/config"
 	"LearnScheduleSystemWithGoLang/pkg/jwt"
 	"LearnScheduleSystemWithGoLang/pkg/res"
 
@@ -34,4 +35,11 @@ func GetUserInfo(c *gin.Context) {
 		"user_name": name,
 		"user_id":   id,
 	})
+}
+
+// GetUserLogout GetUserLogout
+func GetUserLogout(c *gin.Context) {
+	c.SetCookie(jwt.Key, "", -1, "/", config.Val.Domain, false, true)
+
+	res.Success(c, gin.H{})
 }

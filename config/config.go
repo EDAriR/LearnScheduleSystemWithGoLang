@@ -12,6 +12,8 @@ var Val Config
 
 // Config Config
 type Config struct {
+	Domain string `mapstructure:"DOMAIN"`
+
 	Mode string `mapstructure:"MODE"`
 	Port string `mapstructure:"PORT"`
 

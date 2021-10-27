@@ -22,7 +22,16 @@ func main() {
 	{
 		api.GET("ouath/google/url", handler.GoogleAccsess)
 		api.GET("ouath/google/login", handler.GoogleLogin)
+		api.GET("user/info", handler.GetUserInfo)
+		api.GET("user/logout", handler.GetUserLogout)
+
+		// TODO
+		// api.GET("user/logout", middleware.Auth(), handler.GetUserLogout)
+
 		api.POST("/task", middleware.Auth(), handler.CreateTask)
+		// api.GET("groups", middleware.Auth(), handler.GetGroups)
+		api.GET("groups", handler.GetGroups)
+		//
 
 	}
 
